@@ -28,7 +28,6 @@
             overflow-x: hidden;
             line-height: 1.7;
             min-height: 100vh;
-            position: relative;
         }
         
         .page {
@@ -46,46 +45,23 @@
             transform: translateY(0);
         }
         
+        .content-wrapper {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
         header {
             text-align: center;
             margin-bottom: 3rem;
             padding: 2rem 0;
-            position: relative;
-        }
-        
-        header::after {
-            content: '';
-            position: absolute;
-            bottom: 0;
-            left: 50%;
-            transform: translateX(-50%);
-            width: 120px;
-            height: 4px;
-            background: linear-gradient(90deg, var(--accent), var(--secondary));
-            border-radius: 2px;
         }
         
         h1 {
             font-size: 2.8rem;
-            margin-bottom: 1rem;
+            margin-bottom: 1.5rem;
             color: var(--dark);
             font-weight: 800;
             letter-spacing: -0.5px;
-            text-shadow: 0 2px 4px rgba(0,0,0,0.05);
-            position: relative;
-            display: inline-block;
-        }
-        
-        h1::after {
-            content: '';
-            position: absolute;
-            bottom: -10px;
-            left: 50%;
-            transform: translateX(-50%);
-            width: 60%;
-            height: 3px;
-            background: var(--accent);
-            border-radius: 3px;
         }
         
         h2 {
@@ -93,19 +69,6 @@
             margin: 2.5rem 0 1.2rem;
             color: var(--secondary);
             font-weight: 700;
-            position: relative;
-            padding-bottom: 8px;
-        }
-        
-        h2::after {
-            content: '';
-            position: absolute;
-            bottom: 0;
-            left: 0;
-            width: 50px;
-            height: 3px;
-            background: var(--accent);
-            border-radius: 3px;
         }
         
         p {
@@ -115,11 +78,6 @@
             max-width: 800px;
             margin-left: auto;
             margin-right: auto;
-        }
-        
-        .content-wrapper {
-            max-width: 1200px;
-            margin: 0 auto;
         }
         
         .cat-grid {
@@ -137,22 +95,12 @@
             transition: all 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
             position: relative;
             z-index: 1;
-        }
-        
-        .cat-card::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            height: 5px;
-            background: linear-gradient(90deg, var(--accent), var(--secondary));
-            z-index: 2;
+            border: 1px solid rgba(0,0,0,0.05);
         }
         
         .cat-card:hover {
-            transform: translateY(-10px) scale(1.02);
-            box-shadow: 0 15px 40px rgba(0,0,0,0.15);
+            transform: translateY(-8px);
+            box-shadow: 0 15px 40px rgba(0,0,0,0.12);
         }
         
         .cat-img {
@@ -163,7 +111,7 @@
         }
         
         .cat-card:hover .cat-img {
-            transform: scale(1.05);
+            transform: scale(1.03);
         }
         
         .cat-content {
@@ -247,21 +195,12 @@
             transition: all 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
             position: relative;
             overflow: hidden;
-        }
-        
-        .breed-card::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            height: 5px;
-            background: linear-gradient(90deg, var(--accent), var(--secondary));
+            border: 1px solid rgba(0,0,0,0.05);
         }
         
         .breed-card:hover {
-            transform: translateY(-8px) scale(1.02);
-            box-shadow: 0 15px 40px rgba(0,0,0,0.15);
+            transform: translateY(-8px);
+            box-shadow: 0 15px 40px rgba(0,0,0,0.12);
         }
         
         .breed-img {
@@ -270,7 +209,7 @@
             object-fit: cover;
             border-radius: 12px;
             margin-bottom: 1.5rem;
-            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.08);
             transition: transform 0.5s ease;
         }
         
@@ -286,7 +225,7 @@
         li {
             margin-bottom: 0.8rem;
             position: relative;
-            padding-left: 2rem;
+            padding-left: 1.5rem;
             color: var(--text);
         }
         
@@ -307,18 +246,6 @@
             background: var(--dark);
             color: white;
             border-radius: 16px;
-            position: relative;
-            overflow: hidden;
-        }
-        
-        footer::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            height: 5px;
-            background: linear-gradient(90deg, var(--accent), var(--secondary));
         }
         
         .contact {
@@ -341,47 +268,6 @@
         .contact i {
             color: #2aabee;
             font-size: 1.4rem;
-        }
-        
-        .floating-cats {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            pointer-events: none;
-            z-index: -1;
-            overflow: hidden;
-            opacity: 0.2;
-        }
-        
-        .floating-cat {
-            position: absolute;
-            font-size: 28px;
-            animation: float 18s infinite linear;
-            opacity: 0.8;
-            text-shadow: 0 2px 4px rgba(0,0,0,0.1);
-        }
-        
-        @keyframes float {
-            0% {
-                transform: translateY(100vh) rotate(0deg);
-            }
-            100% {
-                transform: translateY(-100px) rotate(360deg);
-            }
-        }
-        
-        .paw-print {
-            position: absolute;
-            font-size: 24px;
-            opacity: 0.1;
-            animation: fadePaw 8s infinite;
-        }
-        
-        @keyframes fadePaw {
-            0%, 100% { opacity: 0.1; transform: scale(1); }
-            50% { opacity: 0.2; transform: scale(1.2); }
         }
         
         @media (max-width: 768px) {
@@ -419,8 +305,6 @@
     </style>
 </head>
 <body>
-    <div class="floating-cats" id="floatingCats"></div>
-    
     <div class="page active" id="home-page">
         <div class="content-wrapper">
             <header>
@@ -431,7 +315,7 @@
                 <section>
                     <h2>Кто такие кошки?</h2>
                     <p>Кошки - это <strong>домашние животные</strong>, которые живут с людьми уже более 10 000 лет. Они известны своей <em>независимостью</em>, <em>грациозностью</em> и <em>охотничьими навыками</em>.</p>
-                    <p>Кошки бывают разных <mark>размеров, окрасов и характеров</mark>. Они могут быть как короткошерстными, так и длинношерстными.</p>
+                    <p>Кошки бывают разных размеров, окрасов и характеров. Они могут быть как короткошерстными, так и длинношерстными.</p>
                 </section>
                 
                 <div class="cat-grid">
@@ -543,7 +427,7 @@
     
     <script>
         document.addEventListener('DOMContentLoaded', function() {
-            createFloatingElements();
+            showPage('home-page');
         });
         
         function showPage(pageId) {
@@ -555,35 +439,6 @@
                 document.getElementById(pageId).classList.add('active');
                 window.scrollTo(0, 0);
             }, 10);
-        }
-        
-        function createFloatingElements() {
-            const container = document.getElementById('floatingCats');
-            const catEmojis = ['😺', '😸', '😹', '😻', '😼', '😽', '🙀', '😿', '😾'];
-            const pawEmojis = ['🐾', '🐾', '🐾'];
-            
-            for (let i = 0; i < 15; i++) {
-                const cat = document.createElement('div');
-                cat.className = 'floating-cat';
-                cat.textContent = catEmojis[Math.floor(Math.random() * catEmojis.length)];
-                cat.style.left = `${Math.random() * 100}%`;
-                cat.style.top = `${Math.random() * 100}%`;
-                cat.style.fontSize = `${Math.random() * 24 + 20}px`;
-                cat.style.animationDuration = `${Math.random() * 25 + 15}s`;
-                cat.style.animationDelay = `${Math.random() * 8}s`;
-                container.appendChild(cat);
-            }
-            
-            for (let i = 0; i < 30; i++) {
-                const paw = document.createElement('div');
-                paw.className = 'paw-print';
-                paw.textContent = pawEmojis[Math.floor(Math.random() * pawEmojis.length)];
-                paw.style.left = `${Math.random() * 100}%`;
-                paw.style.top = `${Math.random() * 100}%`;
-                paw.style.fontSize = `${Math.random() * 20 + 16}px`;
-                paw.style.animationDelay = `${Math.random() * 5}s`;
-                container.appendChild(paw);
-            }
         }
     </script>
 </body>
