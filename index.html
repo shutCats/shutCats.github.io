@@ -1,0 +1,251 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Мир кошек</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 20px;
+            transition: background-color 0.5s;
+        }
+        header {
+            text-align: center;
+            padding: 20px;
+            border-radius: 10px;
+            margin-bottom: 30px;
+        }
+        h1 {
+            text-shadow: 1px 1px 2px rgba(0,0,0,0.2);
+        }
+        footer {
+            text-align: center;
+            margin-top: 30px;
+            padding: 10px;
+            border-radius: 10px;
+        }
+        a {
+            font-weight: bold;
+            text-decoration: none;
+        }
+        a:hover {
+            text-decoration: underline;
+        }
+        button {
+            background-color: #2e8b57;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            cursor: pointer;
+            margin: 10px;
+        }
+        button:hover {
+            background-color: #3cb371;
+        }
+
+        #home-page {
+            display: block;
+            background-color: #f0f8ff;
+            color: #333;
+        }
+        #home-page header {
+            background-color: #add8e6;
+        }
+        #home-page h1 {
+            color: #2e8b57;
+        }
+        #home-page a {
+            color: #2e8b57;
+        }
+        #home-page footer {
+            background-color: #add8e6;
+        }
+        .cat-container {
+            display: flex;
+            justify-content: space-around;
+            flex-wrap: wrap;
+        }
+        .cat-card {
+            width: 45%;
+            margin-bottom: 20px;
+            padding: 15px;
+            background-color: #fff;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+        }
+        #home-page img {
+            width: 100%;
+            border-radius: 5px;
+            height: 300px;
+            object-fit: cover;
+        }
+
+        #breeds-page {
+            display: none;
+            background-color: #fff0f5;
+            color: #556b2f;
+        }
+        #breeds-page header {
+            background-color: #ffb6c1;
+        }
+        #breeds-page h1 {
+            color: #8b4513;
+            font-size: 2.5em;
+            letter-spacing: 2px;
+        }
+        #breeds-page a {
+            color: #8b4513;
+        }
+        #breeds-page footer {
+            background-color: #ffb6c1;
+        }
+        .breed-container {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 25px;
+            margin: 0 auto;
+            max-width: 1200px;
+        }
+        .breed-card {
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 12px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        }
+        #breeds-page img {
+            width: 100%;
+            height: 250px;
+            object-fit: cover;
+            border-radius: 8px;
+            border: 3px solid #ffb6c1;
+        }
+        #breeds-page h2 {
+            color: #8b4513;
+            border-bottom: 2px dashed #ffb6c1;
+            padding-bottom: 10px;
+        }
+        .nav-link {
+            display: block;
+            text-align: center;
+            margin: 20px 0;
+            font-size: 1.2em;
+        }
+    </style>
+</head>
+<body>
+    <div id="home-page">
+        <header>
+            <h1>Добро пожаловать в мир кошек!</h1>
+        </header>
+
+        <main>
+            <section>
+                <h2>Кто такие кошки?</h2>
+                <p>Кошки - это <strong>домашние животные</strong>, которые живут с людьми уже более 10 000 лет. Они известны своей <em>независимостью</em>, <em>грациозностью</em> и <em>охотничьими навыками</em>.</p>
+                <p>Кошки бывают разных <mark>размеров, окрасов и характеров</mark>. Они могут быть как короткошерстными, так и длинношерстными.</p>
+            </section>
+
+            <section class="cat-container">
+                <article class="cat-card">
+                    <h3>Домашний кот</h3>
+                    <img src="https://cdn.pixabay.com/photo/2017/02/20/18/03/cat-2083492_1280.jpg" alt="Домашний кот">
+                    <p>Обычная домашняя кошка - верный друг человека.</p>
+                </article>
+
+                <article class="cat-card">
+                    <h3>Играющий котенок</h3>
+                    <img src="https://cdn.pixabay.com/photo/2014/04/13/20/49/cat-323262_1280.jpg" alt="Играющий котенок">
+                    <p>Котята очень игривые и любознательные.</p>
+                </article>
+            </section>
+
+            <section>
+                <h2>Хотите узнать больше?</h2>
+                <button onclick="showPage('breeds-page')">Посмотреть породы кошек</button>
+            </section>
+        </main>
+
+        <footer>
+            <p>Контакты: @ipshut</p>
+        </footer>
+    </div>
+
+    <div id="breeds-page">
+        <header>
+            <h1>Популярные породы кошек</h1>
+        </header>
+
+        <main>
+            <div class="breed-container">
+                <article class="breed-card">
+                    <h2>Персидская кошка</h2>
+                    <img src="https://cdn.pixabay.com/photo/2017/07/25/01/22/cat-2536662_1280.jpg" alt="Персидская кошка">
+                    <p>Персидские кошки известны своей длинной густой шерстью и спокойным характером. Они любят комфорт и часто выбирают для отдыха мягкие подушки.</p>
+                    <ul>
+                        <li><strong>Происхождение:</strong> Персия (современный Иран)</li>
+                        <li><strong>Характер:</strong> Спокойный, ласковый</li>
+                    </ul>
+                </article>
+
+                <article class="breed-card">
+                    <h2>Сиамская кошка</h2>
+                    <img src="https://cdn.pixabay.com/photo/2018/04/20/17/18/cat-3336579_1280.jpg" alt="Сиамская кошка">
+                    <p>Сиамские кошки очень общительные и разговорчивые. Они имеют характерный окрас с темными отметинами на мордочке, ушах, лапах и хвосте.</p>
+                    <ul>
+                        <li><strong>Происхождение:</strong> Таиланд (бывший Сиам)</li>
+                        <li><strong>Характер:</strong> Активный, общительный</li>
+                    </ul>
+                </article>
+
+                <article class="breed-card">
+                    <h2>Мейн-кун</h2>
+                    <img src="https://cdn.pixabay.com/photo/2017/11/09/21/41/cat-2934720_1280.jpg" alt="Мейн-кун">
+                    <p>Мейн-куны - одни из самых крупных домашних кошек. Они имеют пушистую шерсть и кисточки на ушах, напоминающие рысьи.</p>
+                    <ul>
+                        <li><strong>Происхождение:</strong> США (штат Мэн)</li>
+                        <li><strong>Характер:</strong> Дружелюбный, игривый</li>
+                    </ul>
+                </article>
+
+                <article class="breed-card">
+                    <h2>Британская короткошерстная</h2>
+                    <img src="https://cdn.pixabay.com/photo/2015/03/27/13/16/cat-694730_1280.jpg" alt="Британская короткошерстная">
+                    <p>Британские кошки имеют плотную плюшевую шерсть и округлые формы тела. Они независимы, но при этом преданы своим хозяевам.</p>
+                    <ul>
+                        <li><strong>Происхождение:</strong> Великобритания</li>
+                        <li><strong>Характер:</strong> Спокойный, независимый</li>
+                    </ul>
+                </article>
+
+                <article class="breed-card">
+                    <h2>Сфинкс</h2>
+                    <img src="https://cdn.pixabay.com/photo/2016/11/29/01/34/cat-1866472_1280.jpg" alt="Сфинкс">
+                    <p>Сфинксы - бесшерстные кошки с необычной внешностью. Они очень теплолюбивы и нуждаются в особом уходе за кожей.</p>
+                    <ul>
+                        <li><strong>Происхождение:</strong> Канада</li>
+                        <li><strong>Характер:</strong> Общительный, любопытный</li>
+                    </ul>
+                </article>
+            </div>
+
+            <button onclick="showPage('home-page')">Вернуться на главную</button>
+        </main>
+
+        <footer>
+            <p>Контакты: @ipshut</p>
+        </footer>
+    </div>
+
+    <script>
+        function showPage(pageId) {
+            document.getElementById('home-page').style.display = 'none';
+            document.getElementById('breeds-page').style.display = 'none';
+            document.getElementById(pageId).style.display = 'block';
+            window.scrollTo(0, 0);
+        }
+    </script>
+</body>
+  </html>
