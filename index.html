@@ -25,8 +25,8 @@
         
         body {
             background: 
-                radial-gradient(circle at 10% 20%, rgba(255, 62, 120, 0.08) 0%, transparent 40%),
-                radial-gradient(circle at 90% 80%, rgba(255, 62, 120, 0.05) 0%, transparent 40%),
+                radial-gradient(circle at 20% 30%, rgba(255, 62, 120, 0.15) 0%, transparent 30%),
+                radial-gradient(circle at 80% 70%, rgba(255, 62, 120, 0.1) 0%, transparent 40%),
                 linear-gradient(to bottom, var(--dark), var(--darker));
             color: var(--text);
             overflow-x: hidden;
@@ -480,29 +480,15 @@
         });
         
         function showPage(pageId) {
-            // Плавное скрытие текущей страницы
-            document.querySelectorAll('.page').forEach(page => {
-                if (page.classList.contains('active')) {
-                    page.style.animation = 'fadeOut 0.6s forwards';
-                    setTimeout(() => {
-                        page.classList.remove('active');
-                        page.style.animation = '';
-                    }, 500);
-                }
-            });
-            
-            // Плавное отображение новой страницы
-            setTimeout(() => {
-                const newPage = document.getElementById(pageId);
-                newPage.style.display = 'block';
-                newPage.style.animation = 'fadeIn 0.6s forwards';
+            const currentPage = document.querySelector('.page.active');
+            if (currentPage) {
+                currentPage.style.animation = 'fadeOut 0.6s forwards';
                 setTimeout(() => {
-                    newPage.classList.add('active');
-                    window.scrollTo(0, 0);
-                }, 10);
-            }, 500);
+                    currentPage.classList.remove('active');
+                    currentPage.style.animation = '';
+                }, 600);
+            }
             
-            // Добавляем временную анимацию fadeOut
             const style = document.createElement('style');
             style.innerHTML = `
                 @keyframes fadeOut {
@@ -511,6 +497,16 @@
                 }
             `;
             document.head.appendChild(style);
+            
+            setTimeout(() => {
+                const newPage = document.getElementById(pageId);
+                newPage.style.display = 'block';
+                newPage.style.animation = 'fadeIn 0.6s forwards';
+                setTimeout(() => {
+                    newPage.classList.add('active');
+                    window.scrollTo(0, 0);
+                }, 10);
+            }, 600);
         }
     </script>
 </body>
