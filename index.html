@@ -4,14 +4,13 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Мир Кошек | @ipshut</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css">
     <style>
         :root {
-            --primary: #ff6b6b;
-            --secondary: #4ecdc4;
-            --dark: #292f36;
-            --light: #f7fff7;
-            --accent: #ff9f1c;
+            --primary: #6d597a;
+            --secondary: #b56576;
+            --dark: #355070;
+            --light: #eae7dc;
+            --accent: #e56b6f;
         }
         
         * {
@@ -32,65 +31,40 @@
             display: none;
             min-height: 100vh;
             padding: 2rem;
-            animation: fadeIn 0.8s ease-out;
+            opacity: 0;
+            transition: opacity 0.8s ease;
         }
         
-        @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(20px); }
-            to { opacity: 1; transform: translateY(0); }
+        .page.active {
+            display: block;
+            opacity: 1;
         }
         
         header {
             text-align: center;
             margin-bottom: 3rem;
-            position: relative;
+            padding: 2rem 0;
         }
         
         h1 {
-            font-size: 3.5rem;
+            font-size: 3rem;
             margin-bottom: 1rem;
-            background: linear-gradient(45deg, var(--primary), var(--accent));
-            -webkit-background-clip: text;
-            background-clip: text;
-            color: transparent;
-            display: inline-block;
-            animation: pulse 2s infinite;
-        }
-        
-        @keyframes pulse {
-            0% { transform: scale(1); }
-            50% { transform: scale(1.05); }
-            100% { transform: scale(1); }
+            color: var(--dark);
+            font-weight: 700;
+            letter-spacing: 1px;
         }
         
         h2 {
             font-size: 2rem;
             margin: 2rem 0 1rem;
-            color: var(--primary);
-            position: relative;
-            display: inline-block;
-        }
-        
-        h2::after {
-            content: '';
-            position: absolute;
-            bottom: -5px;
-            left: 0;
-            width: 100%;
-            height: 3px;
-            background: linear-gradient(90deg, var(--primary), var(--secondary));
-            transform: scaleX(0);
-            transform-origin: left;
-            transition: transform 0.3s ease;
-        }
-        
-        h2:hover::after {
-            transform: scaleX(1);
+            color: var(--secondary);
+            font-weight: 600;
         }
         
         p {
             margin-bottom: 1.5rem;
             font-size: 1.1rem;
+            color: var(--dark);
         }
         
         .cat-grid {
@@ -102,51 +76,56 @@
         
         .cat-card {
             background: white;
-            border-radius: 15px;
+            border-radius: 12px;
             overflow: hidden;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
-            transition: all 0.3s ease;
-            transform: translateY(0);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.08);
+            transition: all 0.4s ease;
         }
         
         .cat-card:hover {
-            transform: translateY(-10px);
-            box-shadow: 0 15px 35px rgba(0,0,0,0.15);
+            transform: translateY(-5px);
+            box-shadow: 0 8px 25px rgba(0,0,0,0.12);
         }
         
         .cat-img {
             width: 100%;
             height: 250px;
             object-fit: cover;
-            transition: transform 0.5s ease;
+            transition: transform 0.4s ease;
         }
         
         .cat-card:hover .cat-img {
-            transform: scale(1.05);
+            transform: scale(1.03);
         }
         
         .cat-content {
             padding: 1.5rem;
         }
         
+        .btn-container {
+            text-align: center;
+            margin: 3rem 0;
+        }
+        
         .btn {
             display: inline-block;
             padding: 0.8rem 2rem;
-            background: linear-gradient(45deg, var(--primary), var(--accent));
+            background: var(--secondary);
             color: white;
-            border-radius: 50px;
+            border-radius: 8px;
             text-decoration: none;
-            font-weight: bold;
-            margin: 1rem 0;
+            font-weight: 600;
             transition: all 0.3s ease;
-            box-shadow: 0 4px 15px rgba(255, 107, 107, 0.3);
             border: none;
             cursor: pointer;
+            font-size: 1rem;
+            box-shadow: 0 4px 8px rgba(181, 101, 118, 0.2);
         }
         
         .btn:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 7px 20px rgba(255, 107, 107, 0.4);
+            background: var(--accent);
+            transform: translateY(-2px);
+            box-shadow: 0 6px 12px rgba(229, 107, 111, 0.3);
         }
         
         .breed-list {
@@ -158,24 +137,25 @@
         
         .breed-card {
             background: white;
-            border-radius: 15px;
-            padding: 2rem;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
-            transition: all 0.3s ease;
-            border-left: 5px solid var(--primary);
+            border-radius: 12px;
+            padding: 1.8rem;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.08);
+            transition: all 0.4s ease;
+            border-top: 4px solid var(--secondary);
         }
         
         .breed-card:hover {
             transform: translateY(-5px);
-            box-shadow: 0 15px 35px rgba(0,0,0,0.15);
+            box-shadow: 0 8px 25px rgba(0,0,0,0.12);
         }
         
         .breed-img {
             width: 100%;
-            height: 200px;
+            height: 220px;
             object-fit: cover;
-            border-radius: 10px;
-            margin-bottom: 1rem;
+            border-radius: 8px;
+            margin-bottom: 1.2rem;
+            border: 1px solid rgba(0,0,0,0.1);
         }
         
         ul {
@@ -186,13 +166,17 @@
         li {
             margin-bottom: 0.5rem;
             position: relative;
-            padding-left: 1.5rem;
+            padding-left: 1.8rem;
+            color: var(--dark);
         }
         
         li::before {
-            content: '🐾';
+            content: '•';
+            color: var(--accent);
             position: absolute;
             left: 0;
+            font-weight: bold;
+            font-size: 1.2rem;
         }
         
         footer {
@@ -201,13 +185,14 @@
             padding: 2rem;
             background: var(--dark);
             color: white;
-            border-radius: 15px;
+            border-radius: 12px;
         }
         
         .contact {
-            font-size: 1.2rem;
-            font-weight: bold;
-            color: var(--accent);
+            font-size: 1.1rem;
+            font-weight: 500;
+            color: var(--light);
+            letter-spacing: 1px;
         }
         
         .floating-cats {
@@ -219,30 +204,36 @@
             pointer-events: none;
             z-index: -1;
             overflow: hidden;
+            opacity: 0.15;
         }
         
         .floating-cat {
             position: absolute;
-            opacity: 0.1;
+            font-size: 24px;
             animation: float 15s infinite linear;
+            opacity: 0.7;
         }
         
         @keyframes float {
             0% {
-                transform: translateY(0) rotate(0deg);
+                transform: translateY(100vh) rotate(0deg);
             }
             100% {
-                transform: translateY(-100vh) rotate(360deg);
+                transform: translateY(-100px) rotate(360deg);
             }
         }
         
         @media (max-width: 768px) {
             h1 {
-                font-size: 2.5rem;
+                font-size: 2.2rem;
             }
             
             .cat-grid, .breed-list {
                 grid-template-columns: 1fr;
+            }
+            
+            .page {
+                padding: 1.5rem;
             }
         }
     </style>
@@ -250,21 +241,20 @@
 <body>
     <div class="floating-cats" id="floatingCats"></div>
     
-    <!-- Главная страница -->
-    <div class="page animate__animated" id="home-page">
+    <div class="page active" id="home-page">
         <header>
-            <h1 class="animate__animated animate__fadeInDown">Добро пожаловать в мир кошек!</h1>
+            <h1>Добро пожаловать в мир кошек</h1>
         </header>
         
         <main>
             <section>
-                <h2 class="animate__animated animate__fadeIn">Кто такие кошки?</h2>
-                <p class="animate__animated animate__fadeIn animate__delay-1s">Кошки - это <strong>домашние животные</strong>, которые живут с людьми уже более 10 000 лет. Они известны своей <em>независимостью</em>, <em>грациозностью</em> и <em>охотничьими навыками</em>.</p>
-                <p class="animate__animated animate__fadeIn animate__delay-1s">Кошки бывают разных <mark>размеров, окрасов и характеров</mark>. Они могут быть как короткошерстными, так и длинношерстными.</p>
+                <h2>Кто такие кошки?</h2>
+                <p>Кошки - это <strong>домашние животные</strong>, которые живут с людьми уже более 10 000 лет. Они известны своей <em>независимостью</em>, <em>грациозностью</em> и <em>охотничьими навыками</em>.</p>
+                <p>Кошки бывают разных <mark>размеров, окрасов и характеров</mark>. Они могут быть как короткошерстными, так и длинношерстными.</p>
             </section>
             
             <div class="cat-grid">
-                <article class="cat-card animate__animated animate__fadeInUp animate__delay-2s">
+                <article class="cat-card">
                     <img src="https://cdn.pixabay.com/photo/2017/02/20/18/03/cat-2083492_1280.jpg" alt="Домашний кот" class="cat-img">
                     <div class="cat-content">
                         <h3>Домашний кот</h3>
@@ -272,7 +262,7 @@
                     </div>
                 </article>
                 
-                <article class="cat-card animate__animated animate__fadeInUp animate__delay-3s">
+                <article class="cat-card">
                     <img src="https://cdn.pixabay.com/photo/2014/04/13/20/49/cat-323262_1280.jpg" alt="Играющий котенок" class="cat-img">
                     <div class="cat-content">
                         <h3>Играющий котенок</h3>
@@ -281,26 +271,24 @@
                 </article>
             </div>
             
-            <div class="animate__animated animate__fadeIn animate__delay-4s" style="text-align: center;">
-                <h2>Хотите узнать больше?</h2>
-                <button class="btn" onclick="showPage('breeds-page')">Посмотреть породы кошек</button>
+            <div class="btn-container">
+                <button class="btn" onclick="showPage('breeds-page')">Породы кошек →</button>
             </div>
         </main>
         
-        <footer class="animate__animated animate__fadeIn animate__delay-4s">
+        <footer>
             <p class="contact">@ipshut</p>
         </footer>
     </div>
     
-    <!-- Страница пород -->
-    <div class="page animate__animated" id="breeds-page">
+    <div class="page" id="breeds-page">
         <header>
-            <h1 class="animate__animated animate__fadeInDown">Популярные породы кошек</h1>
+            <h1>Популярные породы кошек</h1>
         </header>
         
         <main>
             <div class="breed-list">
-                <article class="breed-card animate__animated animate__fadeInLeft">
+                <article class="breed-card">
                     <img src="https://cdn.pixabay.com/photo/2017/07/25/01/22/cat-2536662_1280.jpg" alt="Персидская кошка" class="breed-img">
                     <h2>Персидская кошка</h2>
                     <p>Персидские кошки известны своей длинной густой шерстью и спокойным характером. Они любят комфорт и часто выбирают для отдыха мягкие подушки.</p>
@@ -310,7 +298,7 @@
                     </ul>
                 </article>
                 
-                <article class="breed-card animate__animated animate__fadeInLeft animate__delay-1s">
+                <article class="breed-card">
                     <img src="https://cdn.pixabay.com/photo/2018/04/20/17/18/cat-3336579_1280.jpg" alt="Сиамская кошка" class="breed-img">
                     <h2>Сиамская кошка</h2>
                     <p>Сиамские кошки очень общительные и разговорчивые. Они имеют характерный окрас с темными отметинами на мордочке, ушах, лапах и хвосте.</p>
@@ -320,7 +308,7 @@
                     </ul>
                 </article>
                 
-                <article class="breed-card animate__animated animate__fadeInLeft animate__delay-2s">
+                <article class="breed-card">
                     <img src="https://cdn.pixabay.com/photo/2017/11/09/21/41/cat-2934720_1280.jpg" alt="Мейн-кун" class="breed-img">
                     <h2>Мейн-кун</h2>
                     <p>Мейн-куны - одни из самых крупных домашних кошек. Они имеют пушистую шерсть и кисточки на ушах, напоминающие рысьи.</p>
@@ -330,7 +318,7 @@
                     </ul>
                 </article>
                 
-                <article class="breed-card animate__animated animate__fadeInLeft animate__delay-3s">
+                <article class="breed-card">
                     <img src="https://cdn.pixabay.com/photo/2015/03/27/13/16/cat-694730_1280.jpg" alt="Британская короткошерстная" class="breed-img">
                     <h2>Британская короткошерстная</h2>
                     <p>Британские кошки имеют плотную плюшевую шерсть и округлые формы тела. Они независимы, но при этом преданы своим хозяевам.</p>
@@ -340,7 +328,7 @@
                     </ul>
                 </article>
                 
-                <article class="breed-card animate__animated animate__fadeInLeft animate__delay-4s">
+                <article class="breed-card">
                     <img src="https://cdn.pixabay.com/photo/2016/11/29/01/34/cat-1866472_1280.jpg" alt="Сфинкс" class="breed-img">
                     <h2>Сфинкс</h2>
                     <p>Сфинксы - бесшерстные кошки с необычной внешностью. Они очень теплолюбивы и нуждаются в особом уходе за кожей.</p>
@@ -351,33 +339,27 @@
                 </article>
             </div>
             
-            <div style="text-align: center; margin-top: 2rem;">
-                <button class="btn animate__animated animate__fadeIn" onclick="showPage('home-page')">Вернуться на главную</button>
+            <div class="btn-container">
+                <button class="btn" onclick="showPage('home-page')">← На главную</button>
             </div>
         </main>
         
-        <footer class="animate__animated animate__fadeIn">
+        <footer>
             <p class="contact">@ipshut</p>
         </footer>
     </div>
     
     <script>
-        // Показать главную страницу при загрузке
         document.addEventListener('DOMContentLoaded', function() {
-            showPage('home-page');
             createFloatingCats();
         });
         
         function showPage(pageId) {
-            // Скрыть все страницы
             document.querySelectorAll('.page').forEach(page => {
-                page.style.display = 'none';
+                page.classList.remove('active');
             });
             
-            // Показать выбранную страницу
-            document.getElementById(pageId).style.display = 'block';
-            
-            // Прокрутить вверх
+            document.getElementById(pageId).classList.add('active');
             window.scrollTo(0, 0);
         }
         
@@ -385,13 +367,13 @@
             const container = document.getElementById('floatingCats');
             const catEmojis = ['😺', '😸', '😹', '😻', '😼', '😽', '🙀', '😿', '😾'];
             
-            for (let i = 0; i < 15; i++) {
+            for (let i = 0; i < 12; i++) {
                 const cat = document.createElement('div');
                 cat.className = 'floating-cat';
                 cat.textContent = catEmojis[Math.floor(Math.random() * catEmojis.length)];
                 cat.style.left = `${Math.random() * 100}%`;
                 cat.style.top = `${Math.random() * 100}%`;
-                cat.style.fontSize = `${Math.random() * 20 + 10}px`;
+                cat.style.fontSize = `${Math.random() * 20 + 16}px`;
                 cat.style.animationDuration = `${Math.random() * 20 + 10}s`;
                 cat.style.animationDelay = `${Math.random() * 5}s`;
                 container.appendChild(cat);
@@ -399,4 +381,4 @@
         }
     </script>
 </body>
-    </html>
+</html>
