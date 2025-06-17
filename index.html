@@ -32,14 +32,25 @@
             overflow-x: hidden;
             line-height: 1.7;
             min-height: 100vh;
+            position: relative;
+        }
+        
+        #pages-container {
+            position: relative;
+            min-height: 100vh;
         }
         
         .page {
-            display: none;
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
             min-height: 100vh;
             padding: 2rem;
             opacity: 0;
+            transform: translateY(20px);
             animation: fadeIn 0.6s forwards;
+            display: none;
         }
         
         @keyframes fadeIn {
@@ -47,8 +58,14 @@
             to { opacity: 1; transform: translateY(0); }
         }
         
+        @keyframes fadeOut {
+            from { opacity: 1; transform: translateY(0); }
+            to { opacity: 0; transform: translateY(20px); }
+        }
+        
         .page.active {
             display: block;
+            position: relative;
         }
         
         .content-wrapper {
@@ -364,113 +381,115 @@
     </style>
 </head>
 <body>
-    <div class="page active" id="home-page">
-        <div class="content-wrapper">
-            <header>
-                <h1>Добро пожаловать в мир кошек</h1>
-            </header>
-            
-            <main>
-                <section>
-                    <h2>Кто такие кошки?</h2>
-                    <p>Кошки - это <strong style="color: var(--text);">домашние животные</strong>, которые живут с людьми уже более 10 000 лет. Они известны своей <em style="color: var(--text);">независимостью</em>, <em style="color: var(--text);">грациозностью</em> и <em style="color: var(--text);">охотничьими навыками</em>.</p>
-                    <p>Кошки бывают разных <span style="color: var(--text); font-weight: 500;">размеров, окрасов и характеров</span>. Они могут быть как короткошерстными, так и длинношерстными.</p>
-                </section>
+    <div id="pages-container">
+        <div class="page active" id="home-page">
+            <div class="content-wrapper">
+                <header>
+                    <h1>Добро пожаловать в мир кошек</h1>
+                </header>
                 
-                <div class="cat-grid">
-                    <article class="cat-card">
-                        <img src="https://cdn.pixabay.com/photo/2017/02/20/18/03/cat-2083492_1280.jpg" alt="Домашний кот" class="cat-img">
-                        <div class="cat-content">
-                            <h3>Домашний кот</h3>
-                            <p>Обычная домашняя кошка - верный друг человека.</p>
-                        </div>
-                    </article>
+                <main>
+                    <section>
+                        <h2>Кто такие кошки?</h2>
+                        <p>Кошки - это <strong style="color: var(--text);">домашние животные</strong>, которые живут с людьми уже более 10 000 лет. Они известны своей <em style="color: var(--text);">независимостью</em>, <em style="color: var(--text);">грациозностью</em> и <em style="color: var(--text);">охотничьими навыками</em>.</p>
+                        <p>Кошки бывают разных <span style="color: var(--text); font-weight: 500;">размеров, окрасов и характеров</span>. Они могут быть как короткошерстными, так и длинношерстными.</p>
+                    </section>
                     
-                    <article class="cat-card">
-                        <img src="https://cdn.pixabay.com/photo/2014/04/13/20/49/cat-323262_1280.jpg" alt="Играющий котенок" class="cat-img">
-                        <div class="cat-content">
-                            <h3>Играющий котенок</h3>
-                            <p>Котята очень игривые и любознательные.</p>
-                        </div>
-                    </article>
-                </div>
+                    <div class="cat-grid">
+                        <article class="cat-card">
+                            <img src="https://cdn.pixabay.com/photo/2017/02/20/18/03/cat-2083492_1280.jpg" alt="Домашний кот" class="cat-img">
+                            <div class="cat-content">
+                                <h3>Домашний кот</h3>
+                                <p>Обычная домашняя кошка - верный друг человека.</p>
+                            </div>
+                        </article>
+                        
+                        <article class="cat-card">
+                            <img src="https://cdn.pixabay.com/photo/2014/04/13/20/49/cat-323262_1280.jpg" alt="Играющий котенок" class="cat-img">
+                            <div class="cat-content">
+                                <h3>Играющий котенок</h3>
+                                <p>Котята очень игривые и любознательные.</p>
+                            </div>
+                        </article>
+                    </div>
+                    
+                    <div class="btn-container">
+                        <button class="btn" onclick="showPage('breeds-page')">
+                            Смотреть породы кошек <i class="fas fa-arrow-right"></i>
+                        </button>
+                    </div>
+                </main>
                 
-                <div class="btn-container">
-                    <button class="btn" onclick="showPage('breeds-page')">
-                        Смотреть породы кошек <i class="fas fa-arrow-right"></i>
-                    </button>
-                </div>
-            </main>
-            
-            <footer>
-                <a href="https://t.me/ipshut" class="contact" target="_blank">
-                    <i class="fab fa-telegram"></i> @ipshut
-                </a>
-            </footer>
+                <footer>
+                    <a href="https://t.me/ipshut" class="contact" target="_blank">
+                        <i class="fab fa-telegram"></i> @ipshut
+                    </a>
+                </footer>
+            </div>
         </div>
-    </div>
-    
-    <div class="page" id="breeds-page">
-        <div class="content-wrapper">
-            <header>
-                <h1>Популярные породы кошек</h1>
-            </header>
-            
-            <main>
-                <div class="breed-list">
-                    <article class="breed-card">
-                        <img src="https://cdn.pixabay.com/photo/2017/07/25/01/22/cat-2536662_1280.jpg" alt="Персидская кошка" class="breed-img">
-                        <h2>Персидская кошка</h2>
-                        <p>Персидские кошки известны своей длинной густой шерстью и спокойным характером. Они любят комфорт и часто выбирают для отдыха мягкие подушки.</p>
-                        <ul>
-                            <li><strong>Происхождение:</strong> Персия (современный Иран)</li>
-                            <li><strong>Характер:</strong> Спокойный, ласковый</li>
-                        </ul>
-                    </article>
-                    
-                    <article class="breed-card">
-                        <img src="https://cdn.pixabay.com/photo/2018/04/20/17/18/cat-3336579_1280.jpg" alt="Сиамская кошка" class="breed-img">
-                        <h2>Сиамская кошка</h2>
-                        <p>Сиамские кошки очень общительные и разговорчивые. Они имеют характерный окрас с темными отметинами на мордочке, ушах, лапах и хвосте.</p>
-                        <ul>
-                            <li><strong>Происхождение:</strong> Таиланд (бывший Сиам)</li>
-                            <li><strong>Характер:</strong> Активный, общительный</li>
-                        </ul>
-                    </article>
-                    
-                    <article class="breed-card">
-                        <img src="https://cdn.pixabay.com/photo/2017/11/09/21/41/cat-2934720_1280.jpg" alt="Мейн-кун" class="breed-img">
-                        <h2>Мейн-кун</h2>
-                        <p>Мейн-куны - одни из самых крупных домашних кошек. Они имеют пушистую шерсть и кисточки на ушах, напоминающие рысьи.</p>
-                        <ul>
-                            <li><strong>Происхождение:</strong> США (штат Мэн)</li>
-                            <li><strong>Характер:</strong> Дружелюбный, игривый</li>
-                        </ul>
-                    </article>
-                    
-                    <article class="breed-card">
-                        <img src="https://cdn.pixabay.com/photo/2015/03/27/13/16/cat-694730_1280.jpg" alt="Британская короткошерстная" class="breed-img">
-                        <h2>Британская короткошерстная</h2>
-                        <p>Британские кошки имеют плотную плюшевую шерсть и округлые формы тела. Они независимы, но при этом преданы своим хозяевам.</p>
-                        <ul>
-                            <li><strong>Происхождение:</strong> Великобритания</li>
-                            <li><strong>Характер:</strong> Спокойный, независимый</li>
-                        </ul>
-                    </article>
-                </div>
+        
+        <div class="page" id="breeds-page">
+            <div class="content-wrapper">
+                <header>
+                    <h1>Популярные породы кошек</h1>
+                </header>
                 
-                <div class="btn-container">
-                    <button class="btn" onclick="showPage('home-page')">
-                        <i class="fas fa-arrow-left"></i> На главную
-                    </button>
-                </div>
-            </main>
-            
-            <footer>
-                <a href="https://t.me/ipshut" class="contact" target="_blank">
-                    <i class="fab fa-telegram"></i> @ipshut
-                </a>
-            </footer>
+                <main>
+                    <div class="breed-list">
+                        <article class="breed-card">
+                            <img src="https://cdn.pixabay.com/photo/2017/07/25/01/22/cat-2536662_1280.jpg" alt="Персидская кошка" class="breed-img">
+                            <h2>Персидская кошка</h2>
+                            <p>Персидские кошки известны своей длинной густой шерстью и спокойным характером. Они любят комфорт и часто выбирают для отдыха мягкие подушки.</p>
+                            <ul>
+                                <li><strong>Происхождение:</strong> Персия (современный Иран)</li>
+                                <li><strong>Характер:</strong> Спокойный, ласковый</li>
+                            </ul>
+                        </article>
+                        
+                        <article class="breed-card">
+                            <img src="https://cdn.pixabay.com/photo/2018/04/20/17/18/cat-3336579_1280.jpg" alt="Сиамская кошка" class="breed-img">
+                            <h2>Сиамская кошка</h2>
+                            <p>Сиамские кошки очень общительные и разговорчивые. Они имеют характерный окрас с темными отметинами на мордочке, ушах, лапах и хвосте.</p>
+                            <ul>
+                                <li><strong>Происхождение:</strong> Таиланд (бывший Сиам)</li>
+                                <li><strong>Характер:</strong> Активный, общительный</li>
+                            </ul>
+                        </article>
+                        
+                        <article class="breed-card">
+                            <img src="https://cdn.pixabay.com/photo/2017/11/09/21/41/cat-2934720_1280.jpg" alt="Мейн-кун" class="breed-img">
+                            <h2>Мейн-кун</h2>
+                            <p>Мейн-куны - одни из самых крупных домашних кошек. Они имеют пушистую шерсть и кисточки на ушах, напоминающие рысьи.</p>
+                            <ul>
+                                <li><strong>Происхождение:</strong> США (штат Мэн)</li>
+                                <li><strong>Характер:</strong> Дружелюбный, игривый</li>
+                            </ul>
+                        </article>
+                        
+                        <article class="breed-card">
+                            <img src="https://cdn.pixabay.com/photo/2015/03/27/13/16/cat-694730_1280.jpg" alt="Британская короткошерстная" class="breed-img">
+                            <h2>Британская короткошерстная</h2>
+                            <p>Британские кошки имеют плотную плюшевую шерсть и округлые формы тела. Они независимы, но при этом преданы своим хозяевам.</p>
+                            <ul>
+                                <li><strong>Происхождение:</strong> Великобритания</li>
+                                <li><strong>Характер:</strong> Спокойный, независимый</li>
+                            </ul>
+                        </article>
+                    </div>
+                    
+                    <div class="btn-container">
+                        <button class="btn" onclick="showPage('home-page')">
+                            <i class="fas fa-arrow-left"></i> На главную
+                        </button>
+                    </div>
+                </main>
+                
+                <footer>
+                    <a href="https://t.me/ipshut" class="contact" target="_blank">
+                        <i class="fab fa-telegram"></i> @ipshut
+                    </a>
+                </footer>
+            </div>
         </div>
     </div>
     
@@ -480,23 +499,18 @@
         });
         
         function showPage(pageId) {
-            const currentPage = document.querySelector('.page.active');
-            if (currentPage) {
-                currentPage.style.animation = 'fadeOut 0.6s forwards';
-                setTimeout(() => {
-                    currentPage.classList.remove('active');
-                    currentPage.style.animation = '';
-                }, 600);
-            }
+            const pages = document.querySelectorAll('.page');
             
-            const style = document.createElement('style');
-            style.innerHTML = `
-                @keyframes fadeOut {
-                    from { opacity: 1; transform: translateY(0); }
-                    to { opacity: 0; transform: translateY(20px); }
+            pages.forEach(page => {
+                if (page.classList.contains('active')) {
+                    page.style.animation = 'fadeOut 0.6s forwards';
+                    setTimeout(() => {
+                        page.classList.remove('active');
+                        page.style.display = 'none';
+                        page.style.animation = '';
+                    }, 600);
                 }
-            `;
-            document.head.appendChild(style);
+            });
             
             setTimeout(() => {
                 const newPage = document.getElementById(pageId);
